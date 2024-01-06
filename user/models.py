@@ -9,7 +9,7 @@ class UserModel(AbstractUser):
         return f"{self.first_name} {self.last_name}"
 
     def __str__(self) -> str:
-        return 
+        return self.get_full_name
 
     class Meta:
         verbose_name = 'user'
