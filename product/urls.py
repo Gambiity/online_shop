@@ -1,10 +1,10 @@
 from django.urls import path
-from .views import ProductView
+from .views import get_tab2_products, get_tab3_products, get_tab1_products
 
 app_name = 'product'
 
 urlpatterns = [
-    path('Popular-Breakfast/', ProductView.as_view(), name='tab1'),
-    path('Special-Lunch/', ProductView.as_view(), name='tab2'),
-    path('Lovely-Dinner/', ProductView.as_view(), name='tab3'),
+    path('Popular-Breakfast/', get_tab1_products, name='tab1'),
+    path('Special-Lunch/', get_tab2_products, name='tab2'),
+    path('Lovely-Dinner/',get_tab3_products , name='tab3'),
 ]
