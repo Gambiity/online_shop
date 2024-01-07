@@ -36,9 +36,9 @@
                 <form action="{% url 'user:login' %}" method="POST">
                     {% csrf_token  %}
                     <div class="position-relative mx-auto" style="max-width: 400px;">
-                        <input type="text" name="username" required placeholder="Email">
-                        <input type="password" name="password" required placeholder="Password">
-                        <button type="submit" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                        <input type="text" name="username" placeholder="Username">
+                        <input type="password" name="password" placeholder="Password">
+                        <button type="submit" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">Sign In</button>
                     </div>
                 </form>
             </div>

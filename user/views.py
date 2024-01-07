@@ -2,32 +2,33 @@ from typing import Any, Dict
 from django.contrib.auth.forms import AuthenticationForm
 from django.forms.models import BaseModelForm
 from django.http import HttpResponse
-from django.shortcuts import render
-from django.views.generic import CreateView
-from django.contrib.auth.views import LoginView, LogoutView
-from django import forms
+from django.shortcuts import redirect, render
+from django.views.generic import CreateView, TemplateView
+from django.contrib.auth import authenticate, login as auth_login, logout
 from .models import UserModel, CommentModel
 from django.contrib import messages
+
+def login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            auth_login(request, user)
+            messages.success(request, 'Successfully signed in')
+            return redirect('/')
+        else:
+            messages.error(request, 'There was an error logging in. Please try again.')
+            return redirect('/user/contact/')
+    return render(request, 'pages/login.html')
 
 class UserView(CreateView):
     model = UserModel
     template_name = 'pages/contact.html'
-    success_url = '/'
+    success_url = '/user/login/'
     fields = ['first_name', 'last_name', 'email', 'username', 'phone', 'password']
 
-    
-class LoginView(LoginView):
-    template_name = 'layouts/footer.html'
-    success_url = '/'
 
-    def form_invalid(self, form: AuthenticationForm) -> HttpResponse:
-        messages.error(self.request, 'Invalid credentials')
-        print('otmadi')
-        return super().form_invalid(form)
-    
-    def form_valid(self, form: AuthenticationForm) -> HttpResponse:
-        print('otti')
-        return super().form_valid(form)
-    
-class LogOutView(LogoutView):
-    next_page = '/'
+
+# def logout(request):
+#     return redirect(request, '/')

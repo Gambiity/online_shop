@@ -30,6 +30,10 @@
 
     <!-- Template Stylesheet -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    {%block extra_head %}
+
+    {% endblock %}
 </head>
 <body>
     {% include 'layouts/navbar.html' %}
