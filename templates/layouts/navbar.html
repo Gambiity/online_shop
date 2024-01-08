@@ -20,16 +20,16 @@
             <span class="fa fa-bars"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto py-0 pe-4">
-                <a href="index.html" class="nav-item nav-link active">Home</a>
-                <a href="about.html" class="nav-item nav-link">About</a>
+            <div class="navbar-nav ms-auto py-0 pe-4">{{request.path}}
+                <a href="{% url 'main:home' %}" class="nav-item nav-link {% if request.path == '/' %}active{% endif %}">Home</a>
+                <a href="{% url 'main:about' %}" class="nav-item nav-link {% if request.path == '/about/' %}active{% endif %}">About</a>
                 <a href="service.html" class="nav-item nav-link">Service</a>
-                <a href="{% url 'product:tab1' %}" class="nav-item nav-link">Menu</a>
+                <a href="{% url 'product:tab1' %}" class="nav-item nav-link {% if request.path == '/product/Popular-Breakfast/' or request.path == '/product/Special-Lunch/' or request.path == '/product/Lovely-Dinner/'  %}active{% endif %}">Menu</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu m-0">
                         <a href="booking.html" class="dropdown-item">Booking</a>
-                        <a href="team.html" class="dropdown-item">Our Team</a>
+                        <a href="{% url 'main:team' %}" class="dropdown-item {% if request.path == '/team/' %}active{% endif %}">Our Team</a>
                         <a href="testimonial.html" class="dropdown-item">Testimonial</a>
                     </div>
                 </div>

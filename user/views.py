@@ -4,7 +4,7 @@ from django.forms.models import BaseModelForm
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.views.generic import CreateView, TemplateView
-from django.contrib.auth import authenticate, login as auth_login, logout
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from .models import UserModel, CommentModel
 from django.contrib import messages
 
@@ -16,7 +16,7 @@ def login(request):
         if user is not None:
             auth_login(request, user)
             messages.success(request, 'Successfully signed in')
-            return redirect('/')
+            return redirect('/')  #booking
         else:
             messages.error(request, 'There was an error logging in. Please try again.')
             return redirect('/user/contact/')
@@ -30,5 +30,6 @@ class UserView(CreateView):
 
 
 
-# def logout(request):
-#     return redirect(request, '/')
+def logout(request):
+    auth_logout(request)
+    return redirect('/user/contact/')
