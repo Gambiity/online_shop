@@ -5,6 +5,7 @@ from product.models import ProductModel
 from user.models import CommentModel
 from django.utils import timezone
 from datetime import timedelta
+from order.models import OrderModel
 
 week_ago = timezone.now() - timedelta(weeks=1)
 comments = CommentModel.objects.filter(created_at__gte=week_ago)
@@ -19,7 +20,7 @@ def get_tab1_products(request):
             'products': products,
             'objects': blog,
             'teammets': team,
-            'comments': comments
+            'comments': comments,
         })
     
 def get_tab2_products(request):

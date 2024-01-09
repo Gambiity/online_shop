@@ -3,10 +3,10 @@ from .models import UserModel, CommentModel
 
 @admin.register(UserModel)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ['first_name', 'last_name', 'id']
-    list_display_links = ['first_name', 'last_name', 'id']
+    list_display = ['id', 'first_name', 'last_name']
+    list_display_links = ['id', 'first_name', 'last_name']
 
 @admin.register(CommentModel)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ['user', 'id']
-    list_display_links = ['user', 'id']
+    list_display = ['id', 'user']
+    list_display_links = ['id', 'user']

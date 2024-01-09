@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import BookingModel
+from .models import BookingModel, OrderModel
 from django.utils import timezone
 from datetime import datetime
 from user.models import CommentModel
