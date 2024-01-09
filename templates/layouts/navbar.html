@@ -4,9 +4,6 @@
     <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
         <span class="sr-only">Loading...</span>
     </div>
-    {% for message in messages %}
-    {{message}}
-    {% endfor %}
 </div>
 <!-- Spinner End -->
 <!-- Navbar & Hero Start -->
@@ -20,22 +17,22 @@
             <span class="fa fa-bars"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto py-0 pe-4">{{request.path}}
-                <a href="{% url 'main:home' %}" class="nav-item nav-link {% if request.path == '/' %}active{% endif %}">Home</a>
+            <div class="navbar-nav ms-auto py-0 pe-4">
+                <a href="{% url 'main:tab1' %}" class="nav-item nav-link {% if request.path == '/Popular-Breakfast/' or request.path == '/Special-Lunch/' or request.path == '/Lovely-Dinner/'  %}active{% endif %} %}">Home</a>
                 <a href="{% url 'main:about' %}" class="nav-item nav-link {% if request.path == '/about/' %}active{% endif %}">About</a>
-                <a href="service.html" class="nav-item nav-link">Service</a>
+                <a href="service.html" class="nav-item nav-link {% if request.path == 'service' %}active{% endif %}">Service</a>
                 <a href="{% url 'product:tab1' %}" class="nav-item nav-link {% if request.path == '/product/Popular-Breakfast/' or request.path == '/product/Special-Lunch/' or request.path == '/product/Lovely-Dinner/'  %}active{% endif %}">Menu</a>
                 <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                    <a href="#" class="nav-link dropdown-toggle {% if request.path == '/team/' or request.path == '/user/testimonial/' or request.path == '/order/booking/' %}active{% endif %}" data-bs-toggle="dropdown">Pages</a>
                     <div class="dropdown-menu m-0">
-                        <a href="booking.html" class="dropdown-item">Booking</a>
+                        {% if user.is_authenticated %}<a href="{% url 'order:booking' %}" class="dropdown-item {% if request.path == '/order/booking/' %}active{% endif %}">Booking</a>{% endif %}
                         <a href="{% url 'main:team' %}" class="dropdown-item {% if request.path == '/team/' %}active{% endif %}">Our Team</a>
-                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                        <a href="{% url 'user:testimonial' %}" class="dropdown-item {% if request.path == '/user/testimonial/' %}active{% endif %}">Testimonial</a>
                     </div>
                 </div>
-                <a href="{% url 'user:contact' %}" class="nav-item nav-link">Contact</a>
+                <a href="{% url 'user:contact' %}" class="nav-item nav-link {% if request.path == '/user/contact/' %}active{% endif %}">Contact</a>
             </div>
-            <a href="" class="btn btn-primary py-2 px-4">Book A Table</a>
+            {% if user.is_authenticated and request.path != '/order/booking/' %}<a href="{% url 'order:booking' %}" class="btn btn-primary py-2 px-4">Book A Table</a>{% endif %}
         </div>
     </nav>
 
@@ -45,7 +42,7 @@
                 <div class="col-lg-6 text-center text-lg-start">
                     <h1 class="display-3 text-white animated slideInLeft">Enjoy Our<br>Delicious Meal</h1>
                     <p class="text-white animated slideInLeft mb-4 pb-2">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                    <a href="" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Book A Table</a>
+                    {% if user.is_authenticated and request.path != '/order/booking/' %}<a href="{% url 'order:booking' %}" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Book A Table</a>{% endif %}
                 </div>
                 <div class="col-lg-6 text-center text-lg-end overflow-hidden">
                     <img class="img-fluid" src="img/hero.png" alt="">

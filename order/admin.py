@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import BookingModel
 
-# Register your models here.
+@admin.register(BookingModel)
+class BookingAdmin(admin.ModelAdmin):
+    list_display = ['user']
+    list_display_links = ['user']

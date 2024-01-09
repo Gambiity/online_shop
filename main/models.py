@@ -17,29 +17,13 @@ class TeamModel(models.Model):
         verbose_name = 'team'
 
 
-class ContactModel(models.Model):
-    name = models.CharField(max_length=255)
-    email = models.EmailField()
-    subject = models.CharField(max_length=255)
-    message = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self) -> str:
-        return self.name
-    
-    class Meta:
-        verbose_name = 'contact'
-        verbose_name_plural = 'contacts'
-
 class BlogModel(models.Model):
-    img = models.ImageField(upload_to='blog/')
-    title = models.CharField(max_length=255)
     text = models.TextField()
     years = models.PositiveIntegerField()
     masters = models.PositiveIntegerField()
 
     def __str__(self) -> str:
-        return self.title
+        return self.text
     
     class Meta:
         verbose_name = 'blog'

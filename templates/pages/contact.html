@@ -1,5 +1,5 @@
 {% extends 'layouts/base.html' %}
-{% load static widget_tweaks%}
+{% load static widget_tweaks  %}
 {% block content %}
 
         <!-- Contact Start -->
@@ -36,46 +36,47 @@
                         <div class="wow fadeInUp" data-wow-delay="0.2s">
                             <form action="{% url 'user:contact' %}" method="POST">
                                 {% csrf_token %}
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            {{form.first_name|attr:"placeholder:First Name"}} 
+                                    <div class="row g-3">
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control" name="first_name" placeholder="First Name" required>
+                                                <label for="first_name">First Name</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control" name="last_name" placeholder="Last Name" required>
+                                                <label for="last_name">Last Name</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <input type="email" class="form-control" name="email" placeholder="Email" required>
+                                                <label for="email">Email</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control" name="username" placeholder="Username" required>
+                                                <label for="username">Username</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <input type="phone" class="form-control" name="phone" placeholder="Phone" required>
+                                                <label for="phone">Phone</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <input type="password" class="form-control" name="password" placeholder="Password" required>
+                                                <label for="password">Password</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
                                         </div>
                                     </div>
-                                    <div class="col-6">
-                                        <div class="form-floating">
-                                            {{form.last_name|attr:"placeholder:Last Name"}}
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            {{form.email|attr:"placeholder:Email"}}
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-floating">
-                                            {{form.username|attr:"placeholder:Username"}}
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="form-floating">
-                                            {{form.phone|attr:"placeholder:Phone"}}
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="form-floating">
-                                            {{form.password|attr:"placeholder:Password"}} 
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="form-floating">
-
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
-                                    </div>
-                                </div>
                             </form>
                         </div>
                     </div>
