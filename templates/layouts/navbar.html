@@ -20,7 +20,6 @@
             <div class="navbar-nav ms-auto py-0 pe-4">
                 <a href="{% url 'main:tab1' %}" class="nav-item nav-link {% if request.path == '/Popular-Breakfast/' or request.path == '/Special-Lunch/' or request.path == '/Lovely-Dinner/'  %}active{% endif %} %}">Home</a>
                 <a href="{% url 'main:about' %}" class="nav-item nav-link {% if request.path == '/about/' %}active{% endif %}">About</a>
-                <a href="service.html" class="nav-item nav-link {% if request.path == 'service' %}active{% endif %}">Service</a>
                 <a href="{% url 'product:tab1' %}" class="nav-item nav-link {% if request.path == '/product/Popular-Breakfast/' or request.path == '/product/Special-Lunch/' or request.path == '/product/Lovely-Dinner/'  %}active{% endif %}">Menu</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle {% if request.path == '/team/' or request.path == '/user/testimonial/' or request.path == '/order/booking/' %}active{% endif %}" data-bs-toggle="dropdown">Pages</a>
@@ -32,7 +31,7 @@
                 </div>
                 <a href="{% url 'user:contact' %}" class="nav-item nav-link {% if request.path == '/user/contact/' %}active{% endif %}">Contact</a>
             </div>
-            {% if user.is_authenticated and request.path != '/order/booking/' %}<a href="{% url 'order:booking' %}" class="btn btn-primary py-2 px-4">Book A Table</a>{% endif %}
+            {% if user.is_authenticated and request.path != '/order/booking/' %}    {% endif %}
         </div>
     </nav>
 

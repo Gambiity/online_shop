@@ -17,7 +17,8 @@ class ProductModel(models.Model):
     price = models.CharField(max_length=100)
     create_at = models.DateTimeField(auto_now_add=True)
     category = models.ForeignKey(CategoryModel, on_delete=models.CASCADE, related_name='products')
-    
+    is_active = models.BooleanField(default=False)
+
     def __str__(self) -> str:
         return self.name
     

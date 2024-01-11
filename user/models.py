@@ -4,7 +4,8 @@ from django import forms
 
 class UserModel(AbstractUser):
     phone = models.CharField(max_length=13)
-    
+    img = models.ImageField(upload_to='user/', null=True, blank=True)
+
     @property
     def get_full_name(self) -> str:
         return f"{self.first_name} {self.last_name}"

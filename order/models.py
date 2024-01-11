@@ -18,7 +18,7 @@ class BookingModel(models.Model):
 class OrderModel(models.Model):
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     product = models.ManyToManyField(ProductModel)
-    quantity = models.PositiveIntegerField()
+    quantity = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:

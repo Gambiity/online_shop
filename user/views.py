@@ -1,3 +1,4 @@
+from django.forms import ValidationError
 from django.shortcuts import redirect, render
 from django.views.generic import ListView
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
@@ -16,25 +17,33 @@ def login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             auth_login(request, user)
-            messages.success(request, 'Successfully signed in')
             return redirect('/order/booking/') 
         else:
-            messages.error(request, 'There was an error logging in. Please try again.')
-            return redirect('/user/contact/')
+            error = 'Username or Password uncorrect!'
+            return render(request, 'pages/login.html', context={
+                'error': error
+            })
     return render(request, 'pages/login.html')
 
-def contact_view(requset):
-    if requset.method == 'POST':
-        first_name = requset.POST['first_name']
-        last_name = requset.POST['last_name']
-        email = requset.POST['email']
-        phone = requset.POST['phone']
-        password = requset.POST['password']
-        username = requset.POST['username']
-        user = UserModel(first_name=first_name, last_name=last_name, email=email, phone=phone, password=password, username=username)
+def contact_view(request):
+    if request.method == 'POST':
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
+        email = request.POST['email']
+        phone = request.POST['phone']
+        password = request.POST['password']
+        username = request.POST['username']
+        confirm_password = request.POST['confirm_password']
+        img = request.FILES['img']
+        if password != confirm_password:
+            error = 'Passwords are not the same'
+            return render(request, 'pages/contact.html', context={
+                'error':error
+            })
+        user = UserModel(first_name=first_name, last_name=last_name, email=email, phone=phone, password=password, username=username, img=img)
         user.save()
         return redirect('/user/login/')
-    return render(requset,'pages/contact.html')
+    return render(request,'pages/contact.html')
 
 def logout(request):
     auth_logout(request)

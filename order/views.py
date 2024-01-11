@@ -19,3 +19,4 @@ def booking_view(request):
         book.save()
         return redirect('/')
     return render(request, 'pages/booking.html')
+

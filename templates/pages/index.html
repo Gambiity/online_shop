@@ -241,6 +241,7 @@
                             <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
                             <p>{{ object.comment|truncatewords:8 }}</p>
                             <div class="d-flex align-items-center">
+                                {% if object.user.img.url %}<img class="img-fluid flex-shrink-0 rounded-circle" src="{{ object.user.img.url }}" style="width: 50px; height: 50px;">{% endif %}
                                 <div class="ps-3">
                                     <h5 class="mb-1">{{ object.user }}</h5>
                                 </div>

@@ -34,7 +34,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="wow fadeInUp" data-wow-delay="0.2s">
-                            <form action="{% url 'user:contact' %}" method="POST">
+                            <form action="{% url 'user:contact' %}" method="POST" enctype="multipart/form-data">
                                 {% csrf_token %}
                                     <div class="row g-3">
                                         <div class="col-md-6">
@@ -72,6 +72,18 @@
                                                 <input type="password" class="form-control" name="password" placeholder="Password" required>
                                                 <label for="password">Password</label>
                                             </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required>
+                                                <label for="confirm_password">Confirm Password</label>
+                                                {% if error %}
+                                                    <span>{{error}}</span>
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input class="form-control form-control-lg" id="formFileLg" type="file" name="img">
                                         </div>
                                         <div class="col-12">
                                             <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
